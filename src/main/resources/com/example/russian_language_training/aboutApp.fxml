@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.russian_language_training.EmpSceneController">
+   <children>
+      <ImageView fitHeight="700.0" fitWidth="1100.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Images/blackfone_screen.png" />
+         </image>
+      </ImageView>
+      <Button alignment="TOP_LEFT" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="35.0" prefWidth="176.0" text="Назад к меню">
+         <font>
+            <Font name="Cascadia Code Regular" size="18.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="35.0" fitWidth="32.0" layoutX="158.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Images/back_to_menu.png" />
+         </image>
+      </ImageView>
+      <Label alignment="TOP_LEFT" layoutX="11.0" layoutY="105.0" prefHeight="49.0" prefWidth="1073.0" text="Это приложение медленно писалось пользователем Vladifly " textFill="#00d4ff">
+         <font>
+            <Font name="Cascadia Code Regular" size="31.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_LEFT" layoutX="5.0" layoutY="154.0" prefHeight="49.0" prefWidth="1088.0" text="на языке программирования java, с использованием библиотеки" textFill="#00d4ff">
+         <font>
+            <Font name="Cascadia Code Regular" size="31.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_LEFT" layoutX="5.0" layoutY="203.0" prefHeight="49.0" prefWidth="1088.0" text="JavaFX в течении нескольки месяцев. В дальнейшем проект" textFill="#00d4ff">
+         <font>
+            <Font name="Cascadia Code Regular" size="31.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_LEFT" layoutX="6.0" layoutY="252.0" prefHeight="49.0" prefWidth="1088.0" text="планирует добавить еще несколько режимов для тренировки" textFill="#00d4ff">
+         <font>
+            <Font name="Cascadia Code Regular" size="31.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_LEFT" layoutX="6.0" layoutY="301.0" prefHeight="49.0" prefWidth="1088.0" text="грамотности. Vladifly в скоро добавит режим на орфограммы," textFill="#00d4ff">
+         <font>
+            <Font name="Cascadia Code Regular" size="31.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_LEFT" layoutX="6.0" layoutY="350.0" prefHeight="49.0" prefWidth="1088.0" text="а также на правильную постановку рода в взаимствованных" textFill="#00d4ff">
+         <font>
+            <Font name="Cascadia Code Regular" size="31.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_LEFT" layoutX="7.0" layoutY="399.0" prefHeight="49.0" prefWidth="1088.0" text="существительных. За процесс разработки первой версии ав-" textFill="#00d4ff">
+         <font>
+            <Font name="Cascadia Code Regular" size="31.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_LEFT" layoutX="7.0" layoutY="448.0" prefHeight="49.0" prefWidth="1080.0" text="тор сам кое-чему научился, иначе он не знал ударение в" textFill="#00d4ff">
+         <font>
+            <Font name="Cascadia Code Regular" size="31.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_LEFT" layoutX="7.0" layoutY="497.0" prefHeight="49.0" prefWidth="1080.0" text="слове торты ;). Автор желает вам удачной игры и большого" textFill="#00d4ff">
+         <font>
+            <Font name="Cascadia Code Regular" size="31.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_LEFT" layoutX="8.0" layoutY="546.0" prefHeight="49.0" prefWidth="1080.0" text="процента правильных ответов." textFill="#00d4ff">
+         <font>
+            <Font name="Cascadia Code Regular" size="31.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
