@@ -1,11 +1,13 @@
 package com.example.russian_language_training;
 
 public class StatsClass {
-    public static int correctAns = 0; //     --
-    public static int uncorrectAns = 0;//    переменные для хранения
-    public static float ratio = 0f;//        внутриигровой статистики
-    public static int allAns = 0;//          --
+    // variables to store statistics
+    public static int correctAns = 0;
+    public static int uncorrectAns = 0;
+    public static float ratio = 0f;
+    public static int allAns = 0;
 
+    // a method to change all stats
     public static void changeStats(int correctAns, int uncorrectAns, float ratio, int allAns) {
         StatsClass.correctAns = correctAns;
         StatsClass.uncorrectAns = uncorrectAns;
@@ -13,6 +15,7 @@ public class StatsClass {
         StatsClass.allAns = allAns;
     }
 
+    // a method to change correct answers or uncorrect answers or all answers
     public static void changeStats(int value, String place) {
         if (place.equals("correctAns")) {
             StatsClass.correctAns += value;
@@ -23,11 +26,12 @@ public class StatsClass {
         }
     }
 
+    // a method to set ratio
     public void changeStats(float ratio) {
         StatsClass.ratio = ratio;
     }
 
-    // метод для высчитывания процента правильных ответов и его округления до десятых
+    // a method to calculate and round up to tenth percent of correct answers
     public void updateStats() {
         float total = correctAns + uncorrectAns;
         if (total > 0) {

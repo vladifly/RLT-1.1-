@@ -1,6 +1,11 @@
 package com.example.russian_language_training;
 
+// this class store the words for emphasis mode
 public class EmpWords {
+    // in this array:
+    // words[i][0] - word without emphasis
+    // words[i][1] - word with correct emphasis
+    // words[i][2] - word with uncorrect emphasis
     public static String[][] words = {
             {"каталог", "каталОг", "катАлог"},
             {"кремень", "кремЕнь", "крЕмень"},

@@ -19,9 +19,8 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+// this class is controller of emphasis scene
 public class EmpSceneController {
-
-    // тэги для кнопок, тестовых полей
     @FXML private Button btnEmp1;
     @FXML private Button btnEmp2;
     @FXML private Label wordLabel;
@@ -38,20 +37,21 @@ public class EmpSceneController {
     private Parent root;
     private final Random random = new Random();
 
-    public static int[] last = new int[25]; /* массив для хранения слов, которые уже попадались
-                                             у пользователя и дальнейшего предовращения их повторения
-                                             в emp сцене (последние 25 слов не будут повторяться) */
-    public static int lasts = 0;
+    // an array is necessary to store words which already have encountered
+    // we will use it to prevention its recurrence
+    public static int[] last = new int[25];
+    // this variable will store a position in last array
+    // we will use it like last[lasts]
+    public static int lastPosition = 0;
 
-
-    int trueBtn;     // переменная для хранения правильной кнопки в epm сцене
+    // variable to store correct button
+    int trueBtn;
     public static final StatsClass empStats = new StatsClass();
 
     @FXML void initialize() {
         System.out.println("Checking button load: " + (btnEmp1 != null ? "OK" : "NULL"));
 
-        //установление статистики в label
-
+        // setting statistics to labels
         if (cEmpLabel != null) {
             cEmpLabel.setText(String.valueOf(empStats.correctAns));
         }
@@ -60,7 +60,7 @@ public class EmpSceneController {
         }
         if (empPercent != null) {
             empPercent.setText(String.valueOf(empStats.ratio));
-            // установка цвета статистики по его значению
+            // setting the color of statistics by its value
             if (empStats.ratio > 50f && empStats.ratio < 60f || empStats.ratio == 50f) {
                 empPercent.setTextFill(Color.web("#14c317"));
             } else if (empStats.ratio < 30f || empStats.ratio == 30f) {
@@ -76,84 +76,80 @@ public class EmpSceneController {
         if (allEmpLabel != null) {
             allEmpLabel.setText(String.valueOf(empStats.allAns));
         }
-        // проверка кнопок на нулл
+        // checking for labels are null
         if (btnEmp1 != null && btnEmp2 != null && wordLabel != null) {
             randomEpm();
         }
     }
 
+    // method to check word's repetitions
+    public boolean checkRepetitions(int resRandom) {
+        // this variable will store the result
+        boolean res = true;
 
+        // if the word now was in the last 25 times
+        for (int el : last) {
+            // if the word now was repeated then we return false and break the cycle
+            if (el == resRandom) {
+                res = false;
+                break;
+            }
+        }
+
+        return res;
+    }
+
+    // method to get the random word
     public void randomEpm(){
         if (btnEmp1 == null || btnEmp2 == null || wordLabel == null) {
             System.err.println("Error: elements were not loaded.");
             return;
         }
-        //генерация рандомного слова и правильной кнопки (одной из двух)
+        // generation the correct button (one of two)
         trueBtn = ThreadLocalRandom.current().nextInt(1, 3);
-        int resRandom = ThreadLocalRandom.current().nextInt(1, 100);
+
+        // generation the random word
+        boolean isAvailable = false;
+        int resRandom = -1;
+        // checking if a word is repeated
+        while (!isAvailable) {
+            resRandom = ThreadLocalRandom.current().nextInt(1, 100);
+            isAvailable = checkRepetitions(resRandom);
+            System.out.println("repeat");
+        }
         System.out.println("Word element = " + resRandom);
         System.out.println("Correct button = " + trueBtn);
-        String nowWord = EmpWords.words[resRandom-1][0];
 
-        if (lasts >= 25) {lasts = 0;}
+        // if our position at end of the array then we reset it
+        if (lastPosition >= 25) {lastPosition = 0;}
 
-        // проверка на повторения
-        if ((      resRandom != last[0]
-                && resRandom != last[1]
-                && resRandom != last[2]
-                && resRandom != last[3]
-                && resRandom != last[4]
-                && resRandom != last[5]
-                && resRandom != last[6]
-                && resRandom != last[7]
-                && resRandom != last[8]
-                && resRandom != last[9]
-                && resRandom != last[10]
-                && resRandom != last[11]
-                && resRandom != last[12]
-                && resRandom != last[13]
-                && resRandom != last[14]
-                && resRandom != last[15]
-                && resRandom != last[16]
-                && resRandom != last[17]
-                && resRandom != last[18]
-                && resRandom != last[19]
-                && resRandom != last[20]
-                && resRandom != last[21]
-                && resRandom != last[22]
-                && resRandom != last[23]
-                && resRandom != last[24]) || lasts == 0){
-            // установка текста в кнопки и надписи
-            wordLabel.setText(EmpWords.words[resRandom-1][0]);
-            btnEmp1.setText(trueBtn == 1 ? EmpWords.words[resRandom-1][1] : EmpWords.words[resRandom-1][2]);
-            btnEmp2.setText(trueBtn == 2 ? EmpWords.words[resRandom-1][1] : EmpWords.words[resRandom-1][2]);
+        // setting text to labels and buttons
+        wordLabel.setText(EmpWords.words[resRandom-1][0]);
+        btnEmp1.setText(trueBtn == 1 ? EmpWords.words[resRandom-1][1] : EmpWords.words[resRandom-1][2]);
+        btnEmp2.setText(trueBtn == 2 ? EmpWords.words[resRandom-1][1] : EmpWords.words[resRandom-1][2]);
 
-            last[lasts] = resRandom;
-            lasts += 1;
-        } else {
-            System.out.println("Random again");
-            randomEpm();
-            // если условие не сработало, значит слово повторялось в последних 25 словах и генерация будет проведена заново
-        }
+        // we fill the word is now to the array by position
+        last[lastPosition] = resRandom;
+        // we increase position
+        lastPosition += 1;
     }
 
+    // method to quit the app
     @FXML void quit(ActionEvent event) {
         Platform.exit();
     }
 
+    // method to enter the about the app scene
     @FXML void aboutApp(ActionEvent event) throws IOException {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         showXScene(currentStage, "aboutApp.fxml");
     }
 
-    /*
-    нажатие на две кнопки в emp сцене, включая проверку правильного ответа, перехода с emp сцены на correctEmpScene и
-    uncorrectEmpScene, изменение переменных со статистикой и ее обновление
-    */
+    // Pressing to two buttons in emp scene with checking correct answer, transition from emp scene to correctEmpScene or
+    // incorrectEmpScene. Also there are changing and updating variables with statistics
     @FXML void btnEmp1Clck(ActionEvent event) throws IOException {
-        boolean res = trueBtn == 1;
-
-        if (res) {
+        // checking the correct answer and changing statistics depending on the result
+        if (trueBtn == 1) {
             System.out.println("Correct");
             empStats.changeStats(1, "correctAns");
             empStats.changeStats(1, "allAns");
@@ -163,28 +159,34 @@ public class EmpSceneController {
             empStats.changeStats(1, "allAns");
         }
 
+        // updating ratio
         empStats.updateStats();
 
+        // changing scene to correct/incorrect
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        String resultScene = res ? "correctEmpScene.fxml" : "uncorrectEmpScene.fxml";
+        String resultScene = trueBtn == 1 ? "correctEmpScene.fxml" : "uncorrectEmpScene.fxml";
         showXScene(currentStage, resultScene);
 
         new Thread(() -> {
             try {
+                // we wait while correct/incorrect scene is showing
                 Thread.sleep(500);
 
                 Platform.runLater(() -> {
                     try {
                         Parent exerciseRoot = FXMLLoader.load(getClass().getResource("EmpScene.fxml"));
 
+                        // we update labels
                         cEmpLabel = (Label) exerciseRoot.lookup("#cEmpLabel");
                         uncEmpLabel = (Label) exerciseRoot.lookup("#uncEmpLabel");
                         empPercent = (Label) exerciseRoot.lookup("#empPercent");
 
+                        // and we bring statistics to it
                         if (cEmpLabel != null) cEmpLabel.setText(String.valueOf(empStats.correctAns));
                         if (uncEmpLabel != null) uncEmpLabel.setText(String.valueOf(empStats.uncorrectAns));
                         if (empPercent != null) empPercent.setText(String.valueOf(empStats.ratio));
 
+                        // and we change scene back to the emphasis
                         Scene exerciseScene = new Scene(exerciseRoot);
                         currentStage.setScene(exerciseScene);
                         currentStage.show();
@@ -198,13 +200,13 @@ public class EmpSceneController {
                 Thread.currentThread().interrupt();
             }
         }).start();
+        // we update stats again
         empStats.updateStats();
     }
 
     @FXML void btnEmp2Clck(ActionEvent event) throws IOException {
-        boolean res = trueBtn == 2;
-
-        if (res) {
+        // checking the correct answer and changing statistics depending on the result
+        if (trueBtn == 2) {
             System.out.println("Correct");
             empStats.changeStats(1, "correctAns");
             empStats.changeStats(1, "allAns");
@@ -215,28 +217,34 @@ public class EmpSceneController {
         }
         System.out.printf("correct : %d, uncorrect : %d, allAns : %d%n", empStats.correctAns, empStats.uncorrectAns, empStats.allAns);
 
+        // we update stats
         empStats.updateStats();
 
+        // changing scene to correct/incorrect
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        String resultScene = res ? "correctEmpScene.fxml" : "uncorrectEmpScene.fxml";
+        String resultScene = trueBtn == 2 ? "correctEmpScene.fxml" : "uncorrectEmpScene.fxml";
         showXScene(currentStage, resultScene);
 
         new Thread(() -> {
             try {
+                // we wait while correct/incorrect scene is showing
                 Thread.sleep(500);
 
                 Platform.runLater(() -> {
                     try {
                         Parent exerciseRoot = FXMLLoader.load(getClass().getResource("EmpScene.fxml"));
 
+                        // we update labels
                         cEmpLabel = (Label) exerciseRoot.lookup("#cEmpLabel");
                         uncEmpLabel = (Label) exerciseRoot.lookup("#uncEmpLabel");
                         empPercent = (Label) exerciseRoot.lookup("#empPercent");
 
+                        // and we bring statistics to it
                         if (cEmpLabel != null) cEmpLabel.setText(String.valueOf(empStats.correctAns));
                         if (uncEmpLabel != null) uncEmpLabel.setText(String.valueOf(empStats.uncorrectAns));
                         if (empPercent != null) empPercent.setText(String.valueOf(empStats.ratio));
 
+                        // and we change scene back to the emphasis
                         Scene exerciseScene = new Scene(exerciseRoot);
                         currentStage.setScene(exerciseScene);
                         currentStage.show();
@@ -250,17 +258,18 @@ public class EmpSceneController {
                 Thread.currentThread().interrupt();
             }
         }).start();
+        // we update stats again
         empStats.updateStats();
     }
 
-    // метод для возвращения обротно в меню, включающий главную сцену
+    // method for return to the menu
     @FXML
     public void backToMenu(ActionEvent event) throws IOException {
         Stage nowStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         showXScene(nowStage, "russianScene.fxml");
     }
 
-    // метод для перемещения в emp сцену, для обновления статистики
+    // method to transition to the emp scene and updating statistics
     @FXML public void empSceneRun(ActionEvent event) throws IOException {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("EmpScene.fxml")));
@@ -280,8 +289,9 @@ public class EmpSceneController {
             }
         }
         currentStage.show();
-        }
+    }
 
+    // method to transition to any scene
     public void showXScene(Stage currentStage, String fxmlName) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlName)));
         Scene scene = new Scene(root);

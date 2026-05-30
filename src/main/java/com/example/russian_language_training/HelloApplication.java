@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+// this class is necessary to start the program
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
