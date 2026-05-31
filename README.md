@@ -1,6 +1,5 @@
-Привет, это Vladifly.
-Я хочу вам представить тренажёр грамотности для русского языка. В нём пока что только один режим - на ударения, но в будущем я добавлю режимы на орфографию 
-и постановку рода у взаимствованных существительных, что является важным. Версия приложения обновляется и будет обновляться очень долгое время.
+Hi, this is Vladifly.
+I'd like to introduce you to the Russian literacy trainer. It currently only has one mode—stress, but in the future I'll add modes for spelling and gender placement of borrowed nouns, which is important. The app is being updated and will continue to be updated for a very long time.
 
 <img width="1099" height="722" alt="Screenshot_4" src="https://github.com/user-attachments/assets/b28fc042-69d7-4534-9be4-d7e2284cac88" />
 
@@ -8,11 +7,7 @@
 
 <img width="1099" height="727" alt="Screenshot_5" src="https://github.com/user-attachments/assets/30d29c2c-ca34-4bc4-bc50-aa6efb9710f4" />
 
-Итак, как же поиграть в игру. Для начала вам нужно нажать на зелёную кнопку Code, далее на Download ZIP. После этого у вас установится архив. В архиве будет
-лежать вся папка проекта с файлами. Войдите в эту папку. В папках выберете out -> artifacts -> Russian_Language_Training. Вам откроются файлы, среди которых только 1 будет с расширением .exe. RLT [1.1] play.exe. 
-Откройте его. Игра запустилась.
+So, how do you play the game? First, click the green "Code" button, then "Download ZIP." This will install the archive. The archive will contain the entire project folder with files. Open this folder. In the folders, select "out" -> "artifacts" -> "Russian_Language_Training." The files will open, only one of which will have the .exe extension: RLT [1.1] play.exe.
+Open it. The game will launch.
 
-
-
-
-Для удобства, вы можете перетащить файл exe на рабочий стол.
+For convenience, you can drag the exe file to your desktop.
