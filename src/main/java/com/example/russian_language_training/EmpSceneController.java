@@ -146,7 +146,7 @@ public class EmpSceneController {
     }
 
     // Pressing to two buttons in emp scene with checking correct answer, transition from emp scene to correctEmpScene or
-    // incorrectEmpScene. Also there are changing and updating variables with statistics
+    // incorrectEmpScene. There also are changing and updating variables with statistics
     @FXML void btnEmp1Clck(ActionEvent event) throws IOException {
         // checking the correct answer and changing statistics depending on the result
         if (trueBtn == 1) {
@@ -164,7 +164,7 @@ public class EmpSceneController {
 
         // changing scene to correct/incorrect
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        String resultScene = trueBtn == 1 ? "correctEmpScene.fxml" : "uncorrectEmpScene.fxml";
+        String resultScene = trueBtn == 1 ? "correctScene.fxml" : "incorrectScene.fxml";
         showXScene(currentStage, resultScene);
 
         new Thread(() -> {
@@ -174,7 +174,7 @@ public class EmpSceneController {
 
                 Platform.runLater(() -> {
                     try {
-                        Parent exerciseRoot = FXMLLoader.load(getClass().getResource("EmpScene.fxml"));
+                        Parent exerciseRoot = FXMLLoader.load(getClass().getResource("empScene.fxml"));
 
                         // we update labels
                         cEmpLabel = (Label) exerciseRoot.lookup("#cEmpLabel");
@@ -222,7 +222,7 @@ public class EmpSceneController {
 
         // changing scene to correct/incorrect
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        String resultScene = trueBtn == 2 ? "correctEmpScene.fxml" : "uncorrectEmpScene.fxml";
+        String resultScene = trueBtn == 2 ? "correctScene.fxml" : "incorrectScene.fxml";
         showXScene(currentStage, resultScene);
 
         new Thread(() -> {
@@ -232,7 +232,7 @@ public class EmpSceneController {
 
                 Platform.runLater(() -> {
                     try {
-                        Parent exerciseRoot = FXMLLoader.load(getClass().getResource("EmpScene.fxml"));
+                        Parent exerciseRoot = FXMLLoader.load(getClass().getResource("empScene.fxml"));
 
                         // we update labels
                         cEmpLabel = (Label) exerciseRoot.lookup("#cEmpLabel");
@@ -266,29 +266,7 @@ public class EmpSceneController {
     @FXML
     public void backToMenu(ActionEvent event) throws IOException {
         Stage nowStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        showXScene(nowStage, "russianScene.fxml");
-    }
-
-    // method to transition to the emp scene and updating statistics
-    @FXML public void empSceneRun(ActionEvent event) throws IOException {
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("EmpScene.fxml")));
-        currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        currentStage.setScene(scene);
-        if (root != null) {
-            // ищем Label по их fx:id в загруженной сцене
-            cEmpLabel = (Label) root.lookup("#cEmpLabel");
-            uncEmpLabel = (Label) root.lookup("#uncEmpLabel");
-            empPercent = (Label) root.lookup("#empPercent");
-
-            if (cEmpLabel != null && uncEmpLabel != null && empPercent != null) {
-                cEmpLabel.setText(String.valueOf(empStats.correctAns));
-                uncEmpLabel.setText(String.valueOf(empStats.uncorrectAns));
-                empPercent.setText(String.valueOf(empStats.ratio));
-            }
-        }
-        currentStage.show();
+        showXScene(nowStage, "mainScene.fxml");
     }
 
     // method to transition to any scene

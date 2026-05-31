@@ -15,7 +15,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         try {
 
-            final Parent root = FXMLLoader.load(getClass().getResource("russianScene.fxml"));
+            final Parent root = FXMLLoader.load(getClass().getResource("mainScene.fxml"));
             final Scene scene = new Scene(root);
             stage.setTitle("Russian Language Training");
             stage.setScene(scene);
