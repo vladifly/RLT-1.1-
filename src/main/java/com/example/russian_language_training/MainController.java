@@ -12,21 +12,21 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-// controller for main scene
+// controller for the main scene
 public class MainController {
-    // method to enter the about the app scene
+    // method to enter the "about the app" scene
     @FXML void aboutApp(ActionEvent event) throws IOException {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         showXScene(currentStage, "aboutApp.fxml");
     }
 
-    // method to transition to the emp scene and updating statistics
+    // method to transition to the emp scene and update statistics
     @FXML public void empSceneRun(ActionEvent event) throws IOException {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         showXScene(currentStage, "empScene.fxml");
     }
 
-    // method to quit the app
+    // method to quit the application
     @FXML void quit(ActionEvent event) {
         Platform.exit();
     }

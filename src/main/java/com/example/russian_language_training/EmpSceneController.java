@@ -19,7 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-// this class is controller of emphasis scene
+// this class is the controller of the emphasis scene
 public class EmpSceneController {
     @FXML private Button btnEmp1;
     @FXML private Button btnEmp2;
@@ -37,14 +37,14 @@ public class EmpSceneController {
     private Parent root;
     private final Random random = new Random();
 
-    // an array is necessary to store words which already have encountered
-    // we will use it to prevention its recurrence
+    // an array is needed to store words that have already appeared
+    // we will use it to prevent their recurrence
     public static int[] last = new int[25];
-    // this variable will store a position in last array
-    // we will use it like last[lasts]
+    // this variable will store a position in the last array
+    // we will use it like last[lastPosition]
     public static int lastPosition = 0;
 
-    // variable to store correct button
+    // variable to store the correct button
     int trueBtn;
     public static final StatsClass empStats = new StatsClass();
 
@@ -60,7 +60,7 @@ public class EmpSceneController {
         }
         if (empPercent != null) {
             empPercent.setText(String.valueOf(empStats.ratio));
-            // setting the color of statistics by its value
+            // setting the color of statistics based on its value
             if (empStats.ratio > 50f && empStats.ratio < 60f || empStats.ratio == 50f) {
                 empPercent.setTextFill(Color.web("#14c317"));
             } else if (empStats.ratio < 30f || empStats.ratio == 30f) {
@@ -76,20 +76,20 @@ public class EmpSceneController {
         if (allEmpLabel != null) {
             allEmpLabel.setText(String.valueOf(empStats.allAns));
         }
-        // checking for labels are null
+        // checking if labels are null
         if (btnEmp1 != null && btnEmp2 != null && wordLabel != null) {
             randomEpm();
         }
     }
 
-    // method to check word's repetitions
+    // method to check word repetitions
     public boolean checkRepetitions(int resRandom) {
         // this variable will store the result
         boolean res = true;
 
-        // if the word now was in the last 25 times
+        // if the current word was in the last 25 times
         for (int el : last) {
-            // if the word now was repeated then we return false and break the cycle
+            // if the current word was repeated then we return false and break the loop
             if (el == resRandom) {
                 res = false;
                 break;
@@ -99,19 +99,19 @@ public class EmpSceneController {
         return res;
     }
 
-    // method to get the random word
+    // method to get a random word
     public void randomEpm(){
         if (btnEmp1 == null || btnEmp2 == null || wordLabel == null) {
             System.err.println("Error: elements were not loaded.");
             return;
         }
-        // generation the correct button (one of two)
+        // generate the correct button (one of two)
         trueBtn = ThreadLocalRandom.current().nextInt(1, 3);
 
-        // generation the random word
+        // generate a random word
         boolean isAvailable = false;
         int resRandom = -1;
-        // checking if a word is repeated
+        // check if the word is repeated
         while (!isAvailable) {
             resRandom = ThreadLocalRandom.current().nextInt(1, 100);
             isAvailable = checkRepetitions(resRandom);
@@ -120,33 +120,33 @@ public class EmpSceneController {
         System.out.println("Word element = " + resRandom);
         System.out.println("Correct button = " + trueBtn);
 
-        // if our position at end of the array then we reset it
+        // if our position is at the end of the array then we reset it
         if (lastPosition >= 25) {lastPosition = 0;}
 
-        // setting text to labels and buttons
+        // set text to labels and buttons
         wordLabel.setText(EmpWords.words[resRandom-1][0]);
         btnEmp1.setText(trueBtn == 1 ? EmpWords.words[resRandom-1][1] : EmpWords.words[resRandom-1][2]);
         btnEmp2.setText(trueBtn == 2 ? EmpWords.words[resRandom-1][1] : EmpWords.words[resRandom-1][2]);
 
-        // we fill the word is now to the array by position
+        // we fill the current word into the array at the current position
         last[lastPosition] = resRandom;
-        // we increase position
+        // we increase the position
         lastPosition += 1;
     }
 
-    // method to quit the app
+    // method to quit the application
     @FXML void quit(ActionEvent event) {
         Platform.exit();
     }
 
-    // method to enter the about the app scene
+    // method to enter the "about the app" scene
     @FXML void aboutApp(ActionEvent event) throws IOException {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         showXScene(currentStage, "aboutApp.fxml");
     }
 
-    // Pressing to two buttons in emp scene with checking correct answer, transition from emp scene to correctEmpScene or
-    // incorrectEmpScene. There also are changing and updating variables with statistics
+    // Pressing one of two buttons in the emp scene with checking the correct answer, transition from emp scene to correctEmpScene or
+    // incorrectEmpScene. There are also changes and updates to variables with statistics
     @FXML void btnEmp1Clck(ActionEvent event) throws IOException {
         // checking the correct answer and changing statistics depending on the result
         if (trueBtn == 1) {
@@ -154,7 +154,7 @@ public class EmpSceneController {
             empStats.changeStats(1, "correctAns");
             empStats.changeStats(1, "allAns");
         } else {
-            System.out.println("Uncorrect");
+            System.out.println("Incorrect");
             empStats.changeStats(1, "uncorrectAns");
             empStats.changeStats(1, "allAns");
         }
@@ -169,7 +169,7 @@ public class EmpSceneController {
 
         new Thread(() -> {
             try {
-                // we wait while correct/incorrect scene is showing
+                // we wait while the correct/incorrect scene is showing
                 Thread.sleep(500);
 
                 Platform.runLater(() -> {
@@ -181,12 +181,12 @@ public class EmpSceneController {
                         uncEmpLabel = (Label) exerciseRoot.lookup("#uncEmpLabel");
                         empPercent = (Label) exerciseRoot.lookup("#empPercent");
 
-                        // and we bring statistics to it
+                        // and we update statistics in them
                         if (cEmpLabel != null) cEmpLabel.setText(String.valueOf(empStats.correctAns));
                         if (uncEmpLabel != null) uncEmpLabel.setText(String.valueOf(empStats.uncorrectAns));
                         if (empPercent != null) empPercent.setText(String.valueOf(empStats.ratio));
 
-                        // and we change scene back to the emphasis
+                        // and we change the scene back to the emphasis scene
                         Scene exerciseScene = new Scene(exerciseRoot);
                         currentStage.setScene(exerciseScene);
                         currentStage.show();
@@ -211,11 +211,11 @@ public class EmpSceneController {
             empStats.changeStats(1, "correctAns");
             empStats.changeStats(1, "allAns");
         } else {
-            System.out.println("Uncorrect");
+            System.out.println("Incorrect");
             empStats.changeStats(1, "uncorrectAns");
             empStats.changeStats(1, "allAns");
         }
-        System.out.printf("correct : %d, uncorrect : %d, allAns : %d%n", empStats.correctAns, empStats.uncorrectAns, empStats.allAns);
+        System.out.printf("correct : %d, incorrect : %d, total : %d%n", empStats.correctAns, empStats.uncorrectAns, empStats.allAns);
 
         // we update stats
         empStats.updateStats();
@@ -227,7 +227,7 @@ public class EmpSceneController {
 
         new Thread(() -> {
             try {
-                // we wait while correct/incorrect scene is showing
+                // we wait while the correct/incorrect scene is showing
                 Thread.sleep(500);
 
                 Platform.runLater(() -> {
@@ -239,12 +239,12 @@ public class EmpSceneController {
                         uncEmpLabel = (Label) exerciseRoot.lookup("#uncEmpLabel");
                         empPercent = (Label) exerciseRoot.lookup("#empPercent");
 
-                        // and we bring statistics to it
+                        // and we update statistics in them
                         if (cEmpLabel != null) cEmpLabel.setText(String.valueOf(empStats.correctAns));
                         if (uncEmpLabel != null) uncEmpLabel.setText(String.valueOf(empStats.uncorrectAns));
                         if (empPercent != null) empPercent.setText(String.valueOf(empStats.ratio));
 
-                        // and we change scene back to the emphasis
+                        // and we change the scene back to the emphasis scene
                         Scene exerciseScene = new Scene(exerciseRoot);
                         currentStage.setScene(exerciseScene);
                         currentStage.show();
@@ -262,7 +262,7 @@ public class EmpSceneController {
         empStats.updateStats();
     }
 
-    // method for return to the menu
+    // method to return to the menu
     @FXML
     public void backToMenu(ActionEvent event) throws IOException {
         Stage nowStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

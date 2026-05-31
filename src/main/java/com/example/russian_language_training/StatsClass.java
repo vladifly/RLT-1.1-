@@ -15,7 +15,7 @@ public class StatsClass {
         StatsClass.allAns = allAns;
     }
 
-    // a method to change correct answers or uncorrect answers or all answers
+    // a method to change correct answers, incorrect answers, or total answers
     public static void changeStats(int value, String place) {
         if (place.equals("correctAns")) {
             StatsClass.correctAns += value;
@@ -26,12 +26,12 @@ public class StatsClass {
         }
     }
 
-    // a method to set ratio
+    // a method to set the ratio
     public void changeStats(float ratio) {
         StatsClass.ratio = ratio;
     }
 
-    // a method to calculate and round up to tenth percent of correct answers
+    // a method to calculate and round up to tenth of a percent of correct answers
     public void updateStats() {
         float total = correctAns + uncorrectAns;
         if (total > 0) {
