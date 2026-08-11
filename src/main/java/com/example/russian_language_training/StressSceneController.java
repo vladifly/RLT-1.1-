@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
 
+import com.example.russian_language_training.StatsClass;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,18 +20,27 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-// this class is the controller of the emphasis scene
-public class EmpSceneController {
-    @FXML private Button btnEmp1;
-    @FXML private Button btnEmp2;
-    @FXML private Label wordLabel;
-    @FXML private Label allEmpLabel;
-    @FXML private Label cEmpLabel;
-    @FXML private Label empPercent;
-    @FXML private Label uncEmpLabel;
+// this class is the controller of the stress scene
+public class StressSceneController {
+    @FXML
+    private Button btnEmp1;
+    @FXML
+    private Button btnEmp2;
+    @FXML
+    private Label wordLabel;
+    @FXML
+    private Label allAnswersLabel;
+    @FXML
+    private Label correctAnswersLabel;
+    @FXML
+    private Label percentLabel;
+    @FXML
+    private Label incorrectAnswersLabel;
 
-    @FXML private ResourceBundle resources;
-    @FXML private URL location;
+    @FXML
+    private ResourceBundle resources;
+    @FXML
+    private URL location;
 
     private Stage stage;
     private Scene scene;
@@ -46,35 +56,36 @@ public class EmpSceneController {
 
     // variable to store the correct button
     int trueBtn;
-    public static final StatsClass empStats = new StatsClass();
+    public static final StatsClass stressStats = new StatsClass();
 
-    @FXML void initialize() {
+    @FXML
+    void initialize() {
         System.out.println("Checking button load: " + (btnEmp1 != null ? "OK" : "NULL"));
 
         // setting statistics to labels
-        if (cEmpLabel != null) {
-            cEmpLabel.setText(String.valueOf(empStats.correctAns));
+        if (correctAnswersLabel != null) {
+            correctAnswersLabel.setText(String.valueOf(stressStats.correctAns));
         }
-        if (uncEmpLabel != null) {
-            uncEmpLabel.setText(String.valueOf(empStats.uncorrectAns));
+        if (incorrectAnswersLabel != null) {
+            incorrectAnswersLabel.setText(String.valueOf(stressStats.incorrectAns));
         }
-        if (empPercent != null) {
-            empPercent.setText(String.valueOf(empStats.ratio));
+        if (percentLabel != null) {
+            percentLabel.setText(String.valueOf(stressStats.ratio));
             // setting the color of statistics based on its value
-            if (empStats.ratio > 50f && empStats.ratio < 60f || empStats.ratio == 50f) {
-                empPercent.setTextFill(Color.web("#14c317"));
-            } else if (empStats.ratio < 30f || empStats.ratio == 30f) {
-                empPercent.setTextFill(Color.web("#ff0000"));
-            } else if (empStats.ratio > 60f && empStats.ratio < 70f || empStats.ratio == 60f) {
-                empPercent.setTextFill(Color.web("#00aaff"));
-            } else if (empStats.ratio > 70f || empStats.ratio == 70f) {
-                empPercent.setTextFill(Color.web("#8800ff"));
-            } else if (empStats.ratio < 50f && empStats.ratio > 40f || empStats.ratio == 40f) {
-                empPercent.setTextFill(Color.web("#ffffff"));
+            if (stressStats.ratio > 50f && stressStats.ratio < 60f || stressStats.ratio == 50f) {
+                percentLabel.setTextFill(Color.web("#14c317"));
+            } else if (stressStats.ratio < 30f || stressStats.ratio == 30f) {
+                percentLabel.setTextFill(Color.web("#ff0000"));
+            } else if (stressStats.ratio > 60f && stressStats.ratio < 70f || stressStats.ratio == 60f) {
+                percentLabel.setTextFill(Color.web("#00aaff"));
+            } else if (stressStats.ratio > 70f || stressStats.ratio == 70f) {
+                percentLabel.setTextFill(Color.web("#8800ff"));
+            } else if (stressStats.ratio < 50f && stressStats.ratio > 40f || stressStats.ratio == 40f) {
+                percentLabel.setTextFill(Color.web("#ffffff"));
             }
         }
-        if (allEmpLabel != null) {
-            allEmpLabel.setText(String.valueOf(empStats.allAns));
+        if (allAnswersLabel != null) {
+            allAnswersLabel.setText(String.valueOf(stressStats.allAns));
         }
         // checking if labels are null
         if (btnEmp1 != null && btnEmp2 != null && wordLabel != null) {
@@ -100,7 +111,7 @@ public class EmpSceneController {
     }
 
     // method to get a random word
-    public void randomEpm(){
+    public void randomEpm() {
         if (btnEmp1 == null || btnEmp2 == null || wordLabel == null) {
             System.err.println("Error: elements were not loaded.");
             return;
@@ -121,12 +132,14 @@ public class EmpSceneController {
         System.out.println("Correct button = " + trueBtn);
 
         // if our position is at the end of the array then we reset it
-        if (lastPosition >= 25) {lastPosition = 0;}
+        if (lastPosition >= 25) {
+            lastPosition = 0;
+        }
 
         // set text to labels and buttons
-        wordLabel.setText(EmpWords.words[resRandom-1][0]);
-        btnEmp1.setText(trueBtn == 1 ? EmpWords.words[resRandom-1][1] : EmpWords.words[resRandom-1][2]);
-        btnEmp2.setText(trueBtn == 2 ? EmpWords.words[resRandom-1][1] : EmpWords.words[resRandom-1][2]);
+        wordLabel.setText(StressWords.words[resRandom - 1][0]);
+        btnEmp1.setText(trueBtn == 1 ? StressWords.words[resRandom - 1][1] : StressWords.words[resRandom - 1][2]);
+        btnEmp2.setText(trueBtn == 2 ? StressWords.words[resRandom - 1][1] : StressWords.words[resRandom - 1][2]);
 
         // we fill the current word into the array at the current position
         last[lastPosition] = resRandom;
@@ -134,38 +147,28 @@ public class EmpSceneController {
         lastPosition += 1;
     }
 
-    // method to quit the application
-    @FXML void quit(ActionEvent event) {
-        Platform.exit();
-    }
-
-    // method to enter the "about the app" scene
-    @FXML void aboutApp(ActionEvent event) throws IOException {
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        showXScene(currentStage, "aboutApp.fxml");
-    }
-
-    // Pressing one of two buttons in the emp scene with checking the correct answer, transition from emp scene to correctEmpScene or
-    // incorrectEmpScene. There are also changes and updates to variables with statistics
-    @FXML void btnEmp1Clck(ActionEvent event) throws IOException {
+    // Pressing one of two buttons in the emp scene with checking the correct answer, transition from emp scene to correctScene or
+    // incorrectScene. There are also changes and updates to variables with statistics
+    @FXML
+    void btnStress1Click(ActionEvent event) throws IOException {
         // checking the correct answer and changing statistics depending on the result
         if (trueBtn == 1) {
             System.out.println("Correct");
-            empStats.changeStats(1, "correctAns");
-            empStats.changeStats(1, "allAns");
+            stressStats.changeStats(1, "correctAns");
+            stressStats.changeStats(1, "allAns");
         } else {
             System.out.println("Incorrect");
-            empStats.changeStats(1, "uncorrectAns");
-            empStats.changeStats(1, "allAns");
+            stressStats.changeStats(1, "incorrectAns");
+            stressStats.changeStats(1, "allAns");
         }
 
         // updating ratio
-        empStats.updateStats();
+        stressStats.updateStats();
 
         // changing scene to correct/incorrect
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         String resultScene = trueBtn == 1 ? "correctScene.fxml" : "incorrectScene.fxml";
-        showXScene(currentStage, resultScene);
+        showScene(currentStage, resultScene);
 
         new Thread(() -> {
             try {
@@ -174,19 +177,19 @@ public class EmpSceneController {
 
                 Platform.runLater(() -> {
                     try {
-                        Parent exerciseRoot = FXMLLoader.load(getClass().getResource("empScene.fxml"));
+                        Parent exerciseRoot = FXMLLoader.load(getClass().getResource("stressScene.fxml"));
 
                         // we update labels
-                        cEmpLabel = (Label) exerciseRoot.lookup("#cEmpLabel");
-                        uncEmpLabel = (Label) exerciseRoot.lookup("#uncEmpLabel");
-                        empPercent = (Label) exerciseRoot.lookup("#empPercent");
+                        correctAnswersLabel = (Label) exerciseRoot.lookup("#correctAnswersLabel");
+                        incorrectAnswersLabel = (Label) exerciseRoot.lookup("#incorrectAnswersLabel");
+                        percentLabel = (Label) exerciseRoot.lookup("#percentLabel");
 
                         // and we update statistics in them
-                        if (cEmpLabel != null) cEmpLabel.setText(String.valueOf(empStats.correctAns));
-                        if (uncEmpLabel != null) uncEmpLabel.setText(String.valueOf(empStats.uncorrectAns));
-                        if (empPercent != null) empPercent.setText(String.valueOf(empStats.ratio));
+                        if (correctAnswersLabel != null) correctAnswersLabel.setText(String.valueOf(stressStats.correctAns));
+                        if (incorrectAnswersLabel != null) incorrectAnswersLabel.setText(String.valueOf(stressStats.incorrectAns));
+                        if (percentLabel != null) percentLabel.setText(String.valueOf(stressStats.ratio));
 
-                        // and we change the scene back to the emphasis scene
+                        // and we change the scene back to the stress scene
                         Scene exerciseScene = new Scene(exerciseRoot);
                         currentStage.setScene(exerciseScene);
                         currentStage.show();
@@ -201,29 +204,30 @@ public class EmpSceneController {
             }
         }).start();
         // we update stats again
-        empStats.updateStats();
+        stressStats.updateStats();
     }
 
-    @FXML void btnEmp2Clck(ActionEvent event) throws IOException {
+    @FXML
+    void btnStress2Click(ActionEvent event) throws IOException {
         // checking the correct answer and changing statistics depending on the result
         if (trueBtn == 2) {
             System.out.println("Correct");
-            empStats.changeStats(1, "correctAns");
-            empStats.changeStats(1, "allAns");
+            stressStats.changeStats(1, "correctAns");
+            stressStats.changeStats(1, "allAns");
         } else {
             System.out.println("Incorrect");
-            empStats.changeStats(1, "uncorrectAns");
-            empStats.changeStats(1, "allAns");
+            stressStats.changeStats(1, "incorrectAns");
+            stressStats.changeStats(1, "allAns");
         }
-        System.out.printf("correct : %d, incorrect : %d, total : %d%n", empStats.correctAns, empStats.uncorrectAns, empStats.allAns);
+        System.out.printf("correct : %d, incorrect : %d, total : %d%n", stressStats.correctAns, stressStats.incorrectAns, stressStats.allAns);
 
         // we update stats
-        empStats.updateStats();
+        stressStats.updateStats();
 
         // changing scene to correct/incorrect
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         String resultScene = trueBtn == 2 ? "correctScene.fxml" : "incorrectScene.fxml";
-        showXScene(currentStage, resultScene);
+        showScene(currentStage, resultScene);
 
         new Thread(() -> {
             try {
@@ -232,19 +236,19 @@ public class EmpSceneController {
 
                 Platform.runLater(() -> {
                     try {
-                        Parent exerciseRoot = FXMLLoader.load(getClass().getResource("empScene.fxml"));
+                        Parent exerciseRoot = FXMLLoader.load(getClass().getResource("stressScene.fxml"));
 
                         // we update labels
-                        cEmpLabel = (Label) exerciseRoot.lookup("#cEmpLabel");
-                        uncEmpLabel = (Label) exerciseRoot.lookup("#uncEmpLabel");
-                        empPercent = (Label) exerciseRoot.lookup("#empPercent");
+                        correctAnswersLabel = (Label) exerciseRoot.lookup("#correctAnswersLabel");
+                        incorrectAnswersLabel = (Label) exerciseRoot.lookup("#incorrectAnswersLabel");
+                        percentLabel = (Label) exerciseRoot.lookup("#percentLabel");
 
                         // and we update statistics in them
-                        if (cEmpLabel != null) cEmpLabel.setText(String.valueOf(empStats.correctAns));
-                        if (uncEmpLabel != null) uncEmpLabel.setText(String.valueOf(empStats.uncorrectAns));
-                        if (empPercent != null) empPercent.setText(String.valueOf(empStats.ratio));
+                        if (correctAnswersLabel != null) correctAnswersLabel.setText(String.valueOf(stressStats.correctAns));
+                        if (incorrectAnswersLabel != null) incorrectAnswersLabel.setText(String.valueOf(stressStats.incorrectAns));
+                        if (percentLabel != null) percentLabel.setText(String.valueOf(stressStats.ratio));
 
-                        // and we change the scene back to the emphasis scene
+                        // and we change the scene back to the stress scene
                         Scene exerciseScene = new Scene(exerciseRoot);
                         currentStage.setScene(exerciseScene);
                         currentStage.show();
@@ -259,19 +263,27 @@ public class EmpSceneController {
             }
         }).start();
         // we update stats again
-        empStats.updateStats();
+        stressStats.updateStats();
     }
 
     // method to return to the menu
     @FXML
     public void backToMenu(ActionEvent event) throws IOException {
         Stage nowStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        showXScene(nowStage, "mainScene.fxml");
+        showScene(nowStage, "mainScene.fxml");
     }
 
     // method to transition to any scene
-    public void showXScene(Stage currentStage, String fxmlName) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlName)));
+    public void showScene(Stage currentStage, String fxmlName) throws IOException {
+        String path = "/com/example/russian_language_training/" + fxmlName;
+        URL resource = getClass().getResource(path);
+
+        if (resource == null) {
+            System.err.println("Файл не найден: " + path);
+            return;
+        }
+
+        Parent root = FXMLLoader.load(resource);
         Scene scene = new Scene(root);
         currentStage.setScene(scene);
         currentStage.show();

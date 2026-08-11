@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
 
 // controller for the main scene
@@ -17,13 +18,13 @@ public class MainController {
     // method to enter the "about the app" scene
     @FXML void aboutApp(ActionEvent event) throws IOException {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        showXScene(currentStage, "aboutApp.fxml");
+        showScene(currentStage, "aboutApp.fxml");
     }
 
-    // method to transition to the emp scene and update statistics
-    @FXML public void empSceneRun(ActionEvent event) throws IOException {
+    // method to transition to the stress scene and update statistics
+    @FXML public void stressSceneRun(ActionEvent event) throws IOException {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        showXScene(currentStage, "empScene.fxml");
+        showScene(currentStage, "stressScene.fxml");
     }
 
     // method to quit the application
@@ -32,8 +33,16 @@ public class MainController {
     }
 
     // method to transition to any scene
-    public void showXScene(Stage currentStage, String fxmlName) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlName)));
+    public void showScene(Stage currentStage, String fxmlName) throws IOException {
+        String path = "/com/example/russian_language_training/" + fxmlName;
+        URL resource = getClass().getResource(path);
+
+        if (resource == null) {
+            System.err.println("Файл не найден: " + path);
+            return;
+        }
+
+        Parent root = FXMLLoader.load(resource);
         Scene scene = new Scene(root);
         currentStage.setScene(scene);
         currentStage.show();

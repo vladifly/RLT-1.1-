@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.russian_language_training.EmpSceneController">
+<AnchorPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.russian_language_training.StressSceneController">
    <children>
       <ImageView fitHeight="700.0" fitWidth="1100.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -34,12 +34,12 @@
             <Font name="Cascadia Code Regular" size="44.0" />
          </font>
       </Label>
-      <Button fx:id="btnEmp1" layoutX="179.0" layoutY="238.0" mnemonicParsing="false" onAction="#btnEmp1Clck" prefHeight="109.0" prefWidth="743.0" text="text">
+      <Button fx:id="btnEmp1" layoutX="179.0" layoutY="238.0" mnemonicParsing="false" onAction="#btnStress1Click" prefHeight="109.0" prefWidth="743.0" text="text">
          <font>
             <Font name="Cascadia Code Regular" size="59.0" />
          </font>
       </Button>
-      <Button fx:id="btnEmp2" layoutX="179.0" layoutY="358.0" mnemonicParsing="false" onAction="#btnEmp2Clck" prefHeight="85.0" prefWidth="743.0" text="text">
+      <Button fx:id="btnEmp2" layoutX="179.0" layoutY="358.0" mnemonicParsing="false" onAction="#btnStress2Click" prefHeight="85.0" prefWidth="743.0" text="text">
          <font>
             <Font name="Cascadia Code Regular" size="59.0" />
          </font>
@@ -64,17 +64,17 @@
             <Font name="Cascadia Code Regular" size="25.0" />
          </font>
       </Label>
-      <Label fx:id="empPercent" layoutX="731.0" layoutY="7.0" prefHeight="50.0" prefWidth="105.0" textFill="WHITE">
+      <Label fx:id="percentLabel" layoutX="731.0" layoutY="7.0" prefHeight="50.0" prefWidth="105.0" textFill="WHITE">
          <font>
             <Font name="Cascadia Code Regular" size="34.0" />
          </font>
       </Label>
-      <Label fx:id="cEmpLabel" layoutX="696.0" layoutY="544.0" prefHeight="70.0" prefWidth="300.0" text="13" textFill="#00ff0d">
+      <Label fx:id="correctAnswersLabel" layoutX="696.0" layoutY="544.0" prefHeight="70.0" prefWidth="300.0" text="13" textFill="#00ff0d">
          <font>
             <Font name="Cascadia Code Regular" size="45.0" />
          </font>
       </Label>
-      <Label fx:id="uncEmpLabel" layoutX="696.0" layoutY="601.0" prefHeight="70.0" prefWidth="300.0" text="13" textFill="RED">
+      <Label fx:id="incorrectAnswersLabel" layoutX="696.0" layoutY="601.0" prefHeight="70.0" prefWidth="300.0" text="13" textFill="RED">
          <font>
             <Font name="Cascadia Code Regular" size="45.0" />
          </font>
@@ -84,7 +84,7 @@
             <Font name="Cascadia Code Regular" size="42.0" />
          </font>
       </Label>
-      <Label fx:id="allEmpLabel" layoutX="696.0" layoutY="482.0" prefHeight="70.0" prefWidth="300.0" text="13" textFill="WHITE">
+      <Label fx:id="allAnswersLabel" layoutX="696.0" layoutY="482.0" prefHeight="70.0" prefWidth="300.0" text="13" textFill="WHITE">
          <font>
             <Font name="Cascadia Code Regular" size="45.0" />
          </font>

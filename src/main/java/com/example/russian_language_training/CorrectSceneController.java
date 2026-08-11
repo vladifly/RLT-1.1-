@@ -1,4 +1,3 @@
 package com.example.russian_language_training;
 
-public class fdf {
-}
+public class CorrectSceneController {}

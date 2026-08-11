@@ -1,11 +1,11 @@
 package com.example.russian_language_training;
 
-// this class stores the words for the emphasis mode
-public class EmpWords {
+// this class stores the words for the stress mode
+public class StressWords {
     // in this array:
-    // words[i][0] - word without emphasis
-    // words[i][1] - word with correct emphasis
-    // words[i][2] - word with incorrect emphasis
+    // words[i][0] - word without stress
+    // words[i][1] - word with correct stress
+    // words[i][2] - word with incorrect stress
     public static String[][] words = {
             {"каталог", "каталОг", "катАлог"},
             {"кремень", "кремЕнь", "крЕмень"},
