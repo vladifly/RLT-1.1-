@@ -1,4 +1,4 @@
-package com.example.russian_language_training;
+package com.example.russian_language_training.stress;
 
 // this class stores the words for the stress mode
 public class StressWords {

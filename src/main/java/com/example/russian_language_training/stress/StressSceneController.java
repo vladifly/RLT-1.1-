@@ -1,4 +1,4 @@
-package com.example.russian_language_training;
+package com.example.russian_language_training.stress;
 
 import java.io.IOException;
 import java.net.URL;
@@ -169,40 +169,17 @@ public class StressSceneController {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         String resultScene = trueBtn == 1 ? "correctScene.fxml" : "incorrectScene.fxml";
         showScene(currentStage, resultScene);
+        Parent exerciseRoot = FXMLLoader.load(getClass().getResource("/com/example/russian_language_training/stressScene.fxml"));
 
-        new Thread(() -> {
-            try {
-                // we wait while the correct/incorrect scene is showing
-                Thread.sleep(500);
+        // we update labels
+        correctAnswersLabel = (Label) exerciseRoot.lookup("#correctAnswersLabel");
+        incorrectAnswersLabel = (Label) exerciseRoot.lookup("#incorrectAnswersLabel");
+        percentLabel = (Label) exerciseRoot.lookup("#percentLabel");
 
-                Platform.runLater(() -> {
-                    try {
-                        Parent exerciseRoot = FXMLLoader.load(getClass().getResource("stressScene.fxml"));
-
-                        // we update labels
-                        correctAnswersLabel = (Label) exerciseRoot.lookup("#correctAnswersLabel");
-                        incorrectAnswersLabel = (Label) exerciseRoot.lookup("#incorrectAnswersLabel");
-                        percentLabel = (Label) exerciseRoot.lookup("#percentLabel");
-
-                        // and we update statistics in them
-                        if (correctAnswersLabel != null) correctAnswersLabel.setText(String.valueOf(stressStats.correctAns));
-                        if (incorrectAnswersLabel != null) incorrectAnswersLabel.setText(String.valueOf(stressStats.incorrectAns));
-                        if (percentLabel != null) percentLabel.setText(String.valueOf(stressStats.ratio));
-
-                        // and we change the scene back to the stress scene
-                        Scene exerciseScene = new Scene(exerciseRoot);
-                        currentStage.setScene(exerciseScene);
-                        currentStage.show();
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        }).start();
+        // and we update statistics in them
+        if (correctAnswersLabel != null) correctAnswersLabel.setText(String.valueOf(stressStats.correctAns));
+        if (incorrectAnswersLabel != null) incorrectAnswersLabel.setText(String.valueOf(stressStats.incorrectAns));
+        if (percentLabel != null) percentLabel.setText(String.valueOf(stressStats.ratio));
         // we update stats again
         stressStats.updateRatio();
     }
@@ -226,42 +203,19 @@ public class StressSceneController {
 
         // changing scene to correct/incorrect
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        String resultScene = trueBtn == 2 ? "correctScene.fxml" : "incorrectScene.fxml";
+        String resultScene = trueBtn == 1 ? "correctScene.fxml" : "incorrectScene.fxml";
         showScene(currentStage, resultScene);
+        Parent exerciseRoot = FXMLLoader.load(getClass().getResource("/com/example/russian_language_training/stressScene.fxml"));
 
-        new Thread(() -> {
-            try {
-                // we wait while the correct/incorrect scene is showing
-                Thread.sleep(500);
+        // we update labels
+        correctAnswersLabel = (Label) exerciseRoot.lookup("#correctAnswersLabel");
+        incorrectAnswersLabel = (Label) exerciseRoot.lookup("#incorrectAnswersLabel");
+        percentLabel = (Label) exerciseRoot.lookup("#percentLabel");
 
-                Platform.runLater(() -> {
-                    try {
-                        Parent exerciseRoot = FXMLLoader.load(getClass().getResource("stressScene.fxml"));
-
-                        // we update labels
-                        correctAnswersLabel = (Label) exerciseRoot.lookup("#correctAnswersLabel");
-                        incorrectAnswersLabel = (Label) exerciseRoot.lookup("#incorrectAnswersLabel");
-                        percentLabel = (Label) exerciseRoot.lookup("#percentLabel");
-
-                        // and we update statistics in them
-                        if (correctAnswersLabel != null) correctAnswersLabel.setText(String.valueOf(stressStats.correctAns));
-                        if (incorrectAnswersLabel != null) incorrectAnswersLabel.setText(String.valueOf(stressStats.incorrectAns));
-                        if (percentLabel != null) percentLabel.setText(String.valueOf(stressStats.ratio));
-
-                        // and we change the scene back to the stress scene
-                        Scene exerciseScene = new Scene(exerciseRoot);
-                        currentStage.setScene(exerciseScene);
-                        currentStage.show();
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        }).start();
+        // and we update statistics in them
+        if (correctAnswersLabel != null) correctAnswersLabel.setText(String.valueOf(stressStats.correctAns));
+        if (incorrectAnswersLabel != null) incorrectAnswersLabel.setText(String.valueOf(stressStats.incorrectAns));
+        if (percentLabel != null) percentLabel.setText(String.valueOf(stressStats.ratio));
         // we update stats again
         stressStats.updateRatio();
     }
