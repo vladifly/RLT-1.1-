@@ -13,26 +13,26 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 
-// controller for the main scene
+// a controller for the main scene
 public class MainController {
-    // method to enter the "about the app" scene
+    // a method to enter the "about the app" scene
     @FXML void aboutApp(ActionEvent event) throws IOException {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         showScene(currentStage, "aboutApp.fxml");
     }
 
-    // method to transition to the stress scene and update statistics
+    // a method to transition to the stress scene and update statistics
     @FXML public void stressSceneRun(ActionEvent event) throws IOException {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         showScene(currentStage, "stressScene.fxml");
     }
 
-    // method to quit the application
+    // a method to quit the application
     @FXML void quit(ActionEvent event) {
         Platform.exit();
     }
 
-    // method to transition to any scene
+    // a method to transition to any scene
     public void showScene(Stage currentStage, String fxmlName) throws IOException {
         String path = "/com/example/russian_language_training/" + fxmlName;
         URL resource = getClass().getResource(path);

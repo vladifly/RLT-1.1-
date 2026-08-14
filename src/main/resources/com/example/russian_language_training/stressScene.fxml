@@ -34,12 +34,12 @@
             <Font name="Cascadia Code Regular" size="44.0" />
          </font>
       </Label>
-      <Button fx:id="btnEmp1" layoutX="179.0" layoutY="238.0" mnemonicParsing="false" onAction="#btnStress1Click" prefHeight="109.0" prefWidth="743.0" text="text">
+      <Button fx:id="btnStress1" layoutX="179.0" layoutY="238.0" mnemonicParsing="false" onAction="#btnStress1Click" prefHeight="109.0" prefWidth="743.0" text="text">
          <font>
             <Font name="Cascadia Code Regular" size="59.0" />
          </font>
       </Button>
-      <Button fx:id="btnEmp2" layoutX="179.0" layoutY="358.0" mnemonicParsing="false" onAction="#btnStress2Click" prefHeight="85.0" prefWidth="743.0" text="text">
+      <Button fx:id="btnStress2" layoutX="179.0" layoutY="358.0" mnemonicParsing="false" onAction="#btnStress2Click" prefHeight="85.0" prefWidth="743.0" text="text">
          <font>
             <Font name="Cascadia Code Regular" size="59.0" />
          </font>

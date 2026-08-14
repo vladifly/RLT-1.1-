@@ -23,9 +23,9 @@ import javafx.stage.Stage;
 // this class is the controller of the stress scene
 public class StressSceneController {
     @FXML
-    private Button btnEmp1;
+    private Button btnStress1;
     @FXML
-    private Button btnEmp2;
+    private Button btnStress2;
     @FXML
     private Label wordLabel;
     @FXML
@@ -60,7 +60,7 @@ public class StressSceneController {
 
     @FXML
     void initialize() {
-        System.out.println("Checking button load: " + (btnEmp1 != null ? "OK" : "NULL"));
+        System.out.println("Checking button load: " + (btnStress1 != null ? "OK" : "NULL"));
 
         // setting statistics to labels
         if (correctAnswersLabel != null) {
@@ -88,12 +88,12 @@ public class StressSceneController {
             allAnswersLabel.setText(String.valueOf(stressStats.allAns));
         }
         // checking if labels are null
-        if (btnEmp1 != null && btnEmp2 != null && wordLabel != null) {
-            randomEpm();
+        if (btnStress1 != null && btnStress2 != null && wordLabel != null) {
+            randomStress();
         }
     }
 
-    // method to check word repetitions
+    // a method to check word repetitions
     public boolean checkRepetitions(int resRandom) {
         // this variable will store the result
         boolean res = true;
@@ -110,9 +110,9 @@ public class StressSceneController {
         return res;
     }
 
-    // method to get a random word
-    public void randomEpm() {
-        if (btnEmp1 == null || btnEmp2 == null || wordLabel == null) {
+    // a method to get a random word
+    public void randomStress() {
+        if (btnStress1 == null || btnStress2 == null || wordLabel == null) {
             System.err.println("Error: elements were not loaded.");
             return;
         }
@@ -135,11 +135,10 @@ public class StressSceneController {
         if (lastPosition >= 25) {
             lastPosition = 0;
         }
-
         // set text to labels and buttons
         wordLabel.setText(StressWords.words[resRandom - 1][0]);
-        btnEmp1.setText(trueBtn == 1 ? StressWords.words[resRandom - 1][1] : StressWords.words[resRandom - 1][2]);
-        btnEmp2.setText(trueBtn == 2 ? StressWords.words[resRandom - 1][1] : StressWords.words[resRandom - 1][2]);
+        btnStress1.setText(trueBtn == 1 ? StressWords.words[resRandom - 1][1] : StressWords.words[resRandom - 1][2]);
+        btnStress2.setText(trueBtn == 2 ? StressWords.words[resRandom - 1][1] : StressWords.words[resRandom - 1][2]);
 
         // we fill the current word into the array at the current position
         last[lastPosition] = resRandom;
@@ -147,8 +146,9 @@ public class StressSceneController {
         lastPosition += 1;
     }
 
-    // Pressing one of two buttons in the emp scene with checking the correct answer, transition from emp scene to correctScene or
-    // incorrectScene. There are also changes and updates to variables with statistics
+    // Pressing one of two buttons in the stress scene with checking the correct answer, transition
+    // from stress scene to correctScene or incorrectScene. It also changes and updates to
+    // variables with statistics
     @FXML
     void btnStress1Click(ActionEvent event) throws IOException {
         // checking the correct answer and changing statistics depending on the result
@@ -163,7 +163,7 @@ public class StressSceneController {
         }
 
         // updating ratio
-        stressStats.updateStats();
+        stressStats.updateRatio();
 
         // changing scene to correct/incorrect
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -204,7 +204,7 @@ public class StressSceneController {
             }
         }).start();
         // we update stats again
-        stressStats.updateStats();
+        stressStats.updateRatio();
     }
 
     @FXML
@@ -222,7 +222,7 @@ public class StressSceneController {
         System.out.printf("correct : %d, incorrect : %d, total : %d%n", stressStats.correctAns, stressStats.incorrectAns, stressStats.allAns);
 
         // we update stats
-        stressStats.updateStats();
+        stressStats.updateRatio();
 
         // changing scene to correct/incorrect
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -263,17 +263,17 @@ public class StressSceneController {
             }
         }).start();
         // we update stats again
-        stressStats.updateStats();
+        stressStats.updateRatio();
     }
 
-    // method to return to the menu
+    // a method to return to the menu
     @FXML
     public void backToMenu(ActionEvent event) throws IOException {
         Stage nowStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         showScene(nowStage, "mainScene.fxml");
     }
 
-    // method to transition to any scene
+    // a method to transition to any scene
     public void showScene(Stage currentStage, String fxmlName) throws IOException {
         String path = "/com/example/russian_language_training/" + fxmlName;
         URL resource = getClass().getResource(path);

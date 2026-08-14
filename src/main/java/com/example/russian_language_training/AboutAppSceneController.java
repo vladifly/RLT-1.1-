@@ -13,14 +13,14 @@ import java.net.URL;
 
 public class AboutAppSceneController {
 
-    // method to return to the menu
+    // a method to return to the menu
     @FXML
     public void backToMenu(ActionEvent event) throws IOException {
         Stage nowStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         showScene(nowStage, "mainScene.fxml");
     }
 
-    // method to transition to any scene
+    // a method to transition to any scene
     public void showScene(Stage currentStage, String fxmlName) throws IOException {
         String path = "/com/example/russian_language_training/" + fxmlName;
         URL resource = getClass().getResource(path);

@@ -24,27 +24,27 @@
             <Image url="@../../../Images/back_to_menu.png" />
          </image>
       </ImageView>
-      <Label alignment="TOP_LEFT" layoutX="11.0" layoutY="105.0" prefHeight="49.0" prefWidth="1073.0" text="Это приложение медленно писалось пользователем Vladifly " textFill="#00d4ff">
+      <Label alignment="TOP_LEFT" layoutX="11.0" layoutY="105.0" prefHeight="49.0" prefWidth="1073.0" text="Это приложение писалось пользователем Vladifly на языке" textFill="#00d4ff">
          <font>
             <Font name="Cascadia Code Regular" size="31.0" />
          </font>
       </Label>
-      <Label alignment="TOP_LEFT" layoutX="5.0" layoutY="154.0" prefHeight="49.0" prefWidth="1088.0" text="на языке программирования java, с использованием библиотеки" textFill="#00d4ff">
+      <Label alignment="TOP_LEFT" layoutX="5.0" layoutY="154.0" prefHeight="49.0" prefWidth="1088.0" text="программирования java, с использованием библиотеки" textFill="#00d4ff">
          <font>
             <Font name="Cascadia Code Regular" size="31.0" />
          </font>
       </Label>
-      <Label alignment="TOP_LEFT" layoutX="5.0" layoutY="203.0" prefHeight="49.0" prefWidth="1088.0" text="JavaFX в течении нескольки месяцев. В дальнейшем проект" textFill="#00d4ff">
+      <Label alignment="TOP_LEFT" layoutX="5.0" layoutY="203.0" prefHeight="49.0" prefWidth="1088.0" text="JavaFX в месяца. В дальнейшем проект планирует добавить" textFill="#00d4ff">
          <font>
             <Font name="Cascadia Code Regular" size="31.0" />
          </font>
       </Label>
-      <Label alignment="TOP_LEFT" layoutX="6.0" layoutY="252.0" prefHeight="49.0" prefWidth="1088.0" text="планирует добавить еще несколько режимов для тренировки" textFill="#00d4ff">
+      <Label alignment="TOP_LEFT" layoutX="6.0" layoutY="252.0" prefHeight="49.0" prefWidth="1088.0" text="еще несколько режимов для тренировки грамотности." textFill="#00d4ff">
          <font>
             <Font name="Cascadia Code Regular" size="31.0" />
          </font>
       </Label>
-      <Label alignment="TOP_LEFT" layoutX="6.0" layoutY="301.0" prefHeight="49.0" prefWidth="1088.0" text="грамотности. Vladifly в скоро добавит режим на орфограммы," textFill="#00d4ff">
+      <Label alignment="TOP_LEFT" layoutX="6.0" layoutY="301.0" prefHeight="49.0" prefWidth="1088.0" text="Vladifly скоро добавит режим &quot;Вставь букву&quot; на орфографию," textFill="#00d4ff">
          <font>
             <Font name="Cascadia Code Regular" size="31.0" />
          </font>
