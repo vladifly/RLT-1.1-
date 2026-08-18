@@ -13,7 +13,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 
-public class WrongRightScenesController {
+public class IncorrectSceneController {
     @FXML
     private Label textLabel;
 

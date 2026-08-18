@@ -203,7 +203,7 @@ public class StressSceneController {
 
         // changing scene to correct/incorrect
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        String resultScene = trueBtn == 1 ? "correctScene.fxml" : "incorrectScene.fxml";
+        String resultScene = trueBtn == 2 ? "correctScene.fxml" : "incorrectScene.fxml";
         showScene(currentStage, resultScene);
         Parent exerciseRoot = FXMLLoader.load(getClass().getResource("/com/example/russian_language_training/stressScene.fxml"));
 
